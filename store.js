@@ -8,12 +8,12 @@ var store = new Vuex.Store({
         events: [],
         cart: {
             tickets: [],
-        
+            merchandises: []
         },
     },
     mutations: {
         ADD_TICKET_TO_CART(state, event) {
-          var added = false;
+            var added = false;
             for (var i = 0; i < state.cart.tickets.length; i++) {
                 if (state.cart.tickets[i].id === event.id) {
                     state.cart.tickets[i].unit_price = event.unit_price;
@@ -23,30 +23,31 @@ var store = new Vuex.Store({
                     added = true;
                 }
             }
-            if(!added){
-              state.cart.tickets.push(event);
+            if (!added) {
+                state.cart.tickets.push(event);
             }
-   
-          else {
-               }
-            
+
+            else {
+            }
+
             window.localStorage.setItem('cart', JSON.stringify(state.cart))
         },
-        UPDATE_EVENT_LIST(state, events){
+        UPDATE_EVENT_LIST(state, events) {
             state.events = events;
         },
-        RESTORE_CART(state, cart){
+        RESTORE_CART(state, cart) {
             state.cart = cart
             window.localStorage.setItem('cart', JSON.stringify(state.cart))
         },
-        CLEAR_CART(state){
+        CLEAR_CART(state) {
             state.cart = {
                 tickets: [],
-               
+                merchandises: []
+
             }
-          window.localStorage.setItem('cart', JSON.stringify(state.cart))
+            window.localStorage.setItem('cart', JSON.stringify(state.cart))
         },
-        REMOVE_FROM_CART_TICKET(state, event){
+        REMOVE_FROM_CART_TICKET(state, event) {
             for (var i = 0; i < state.cart.tickets.length; i++) {
                 if (state.cart.tickets[i].id === parseInt(event.id)) {
                     state.cart.tickets.splice(i, 1);
@@ -54,11 +55,11 @@ var store = new Vuex.Store({
             }
             window.localStorage.setItem('cart', JSON.stringify(state.cart))
         },
-        REMOVE_CART_TICKET_OPTION (state) {
-           // option.selected = false;
+        REMOVE_CART_TICKET_OPTION(state) {
+            // option.selected = false;
             window.localStorage.setItem('cart', JSON.stringify(state.cart))
         },
-        REMOVE_CART_EVENT(state, event){
+        REMOVE_CART_EVENT(state, event) {
             for (var i = 0; i < state.cart.tickets.length; i++) {
                 if (state.cart.tickets[i].id === parseInt(event.id)) {
                     state.cart.tickets.splice(i, 1);
@@ -69,7 +70,7 @@ var store = new Vuex.Store({
 
     },
     getters: {
-        getItemTotal(cartItem){
+        getItemTotal(cartItem) {
             return 0.00;
         }
     }

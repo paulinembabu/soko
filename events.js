@@ -8,15 +8,15 @@ var vm = new Vue({
         isCheckingOut: false,
         checkoutPhone: ''
 
-    
+
     },
     methods: {
-      formatMoney: function (amount) {
-        return 'Kshs. '+amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      },
-      toggleCheckout: function () {
-        this.isCheckingOut = !this.isCheckingOut;
-      },
+        formatMoney: function (amount) {
+            return 'Kshs. ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+        toggleCheckout: function () {
+            this.isCheckingOut = !this.isCheckingOut;
+        },
         checkout: function () {
             var self = this;
 
@@ -26,8 +26,13 @@ var vm = new Vue({
                 return;
             }
             self.isCheckoutProcessing = true;
-          axios.post('http://test.nouveta.tech/ticketSoko/public/api/frontend/checkout', {cart: cart, phone: this.checkoutPhone})
-       //   axios.post('http://localhost:8086/api/frontend/checkout', {cart: cart, phone: this.checkoutPhone})
+            //https://ticketpay.wizhub.co.ke/ticket-pay-api/public/api/frontend
+            //axios.post('http://test.nouveta.tech/ticketSoko/public/api/frontend/checkout', {
+            axios.post('http://ticketpay.wizhub.co.ke/ticket-pay-api/public/api/frontend/checkout', {
+                cart: cart,
+                phone: this.checkoutPhone
+            })
+            //   axios.post('http://localhost:8086/api/frontend/checkout', {cart: cart, phone: this.checkoutPhone})
                 .then(function (response) {
                     self.isCheckoutProcessing = false;
                     self.isCartOpen = false;
@@ -38,12 +43,12 @@ var vm = new Vue({
                     //self.generateTicket(response.data);
                 })
                 .catch(function (error) {
-                  self.isCheckoutProcessing = false;
+                    self.isCheckoutProcessing = false;
                     // console.log(error);
                 });
 
         },
-        cardCheckout: function(){
+        cardCheckout: function () {
             var self = this;
 
             var cart = JSON.stringify(store.state.cart);
@@ -52,8 +57,11 @@ var vm = new Vue({
                 return;
             }
             self.isCheckoutProcessing = true;
-          axios.post('https://ticketsoko.co.ke/ticket-pay-api/public/api/frontend/cardCheckout', {cart: cart, phone: this.checkoutPhone})
-               .then(function (response) {
+            axios.post('https://ticketsoko.co.ke/ticket-pay-api/public/api/frontend/cardCheckout', {
+                cart: cart,
+                phone: this.checkoutPhone
+            })
+                .then(function (response) {
                     self.isCheckoutProcessing = false;
                     self.isCartOpen = false;
                     self.checkoutPhone = '';
@@ -64,13 +72,13 @@ var vm = new Vue({
                     $("#order_info_card").val(order_info);
                     $("#amt").val(amount);
                     $("#card").submit();
-                      alert('Your order has been received. Thank you.');
+                    alert('Your order has been received. Thank you.');
                     store.commit('CLEAR_CART');
                     // console.log(response);
                     //self.generateTicket(response.data);
                 })
                 .catch(function (error) {
-                  self.isCheckoutProcessing = false;
+                    self.isCheckoutProcessing = false;
                     // console.log(error);
                 });
         },
@@ -144,7 +152,7 @@ var vm = new Vue({
         },
         removeTicketOption: function (cartItem) {
             store.commit('REMOVE_CART_TICKET_OPTION')
-            if(!this.hasTickets(cartItem)) {
+            if (!this.hasTickets(cartItem)) {
                 this.removeCartEvent(cartItem)
             }
         },
@@ -152,8 +160,8 @@ var vm = new Vue({
             store.commit('REMOVE_CART_EVENT', event)
         },
         hasTickets: function (event) {
-            for (let option of event.options){
-                if(option.selected){
+            for (let option of event.options) {
+                if (option.selected) {
                     return true
                 }
             }
@@ -162,10 +170,9 @@ var vm = new Vue({
         },
         getEvents: function () {
             var self = this;
-           //axios.get('https://ticketpay.wizhub.co.ke/ticket-pay-api/public/api/frontend/events')
-         axios.get('http://test.nouveta.tech/ticketSoko/public/api/frontend/events')
-         //axios.get('http://localhost:8088/api/frontend/events')
-
+            axios.get('https://ticketpay.wizhub.co.ke/ticket-pay-api/public/api/frontend/events')
+            //axios.get('http://test.nouveta.tech/ticketSoko/public/api/frontend/events')
+            //axios.get('http://localhost:8088/api/frontend/events')
                 .then(function (response) {
                     store.commit('UPDATE_EVENT_LIST', response.data.data)
                 })
@@ -190,7 +197,7 @@ var vm = new Vue({
                 if (eventTicket.ticket_option_id === parseInt(option.ticket_option_id)) {
                     option.selected = true
                     option.unit_price = option.event_tickets.amount
-                    return  
+                    return
                 }
             }
             option.selected = false
@@ -199,7 +206,7 @@ var vm = new Vue({
         addToCart(option) {
 
         },
-     
+
         quantityChanged: function (option) {
             if (option.ticket_option_id === 0) {
                 return 0.00
@@ -246,28 +253,28 @@ var vm = new Vue({
                 index = 1;
             }
             for (var eventTicket of cartItem.options[index].event_tickets) {
-                if (eventTicket.ticket_option_id ===option_id) {
+                if (eventTicket.ticket_option_id === option_id) {
                     return true;
                 }
             }
             return false;
         },
-    
-          isOptionSoldOut: function (cartItem, option_id, option) {
-          var index = 0;
-          if (option === 'Seasonal') {
-              index = 1;
-          }
-          for (var eventTicket of cartItem.options[index].event_tickets) {
-              if (eventTicket.ticket_option_id ===parseInt(option_id)) {
-                  if(eventTicket.available) {
-                    return false;
-                  } else {
-                  return true;
+
+        isOptionSoldOut: function (cartItem, option_id, option) {
+            var index = 0;
+            if (option === 'Seasonal') {
+                index = 1;
+            }
+            for (var eventTicket of cartItem.options[index].event_tickets) {
+                if (eventTicket.ticket_option_id === parseInt(option_id)) {
+                    if (eventTicket.available) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
-              }
-          }
-          return true;
+            }
+            return true;
         },
 
 
@@ -277,12 +284,12 @@ var vm = new Vue({
                 index = 1;
             }
             for (var eventTicket of cartItem.options[index].event_tickets) {
-                if (eventTicket.ticket_option_id ===parseInt(option_id)) {
-                    if(eventTicket.available) {
-                      return eventTicket.amount;
+                if (eventTicket.ticket_option_id === parseInt(option_id)) {
+                    if (eventTicket.available) {
+                        return eventTicket.amount;
                     } else {
-                    return 'Sold out';
-                  }
+                        return 'Sold out';
+                    }
                 }
             }
             return 'No tickets';
@@ -292,15 +299,15 @@ var vm = new Vue({
             if (option === 'Seasonal') {
                 index = 1;
             }
-            cartItem.options[index].selected = event.options[index].ticket_option_id !== 0;
-            if(cartItem.options[index].selected) {
+            cartItem.options[index].selected = cartItem.options[index].ticket_option_id !== 0;
+            if (cartItem.options[index].selected) {
                 // alert(this.ticketOptionPrice(event, event.options[index].ticket_option_id, option));
                 cartItem.options[index].unit_price = this.ticketOptionPrice(cartItem, cartItem.options[index].ticket_option_id, option);
             }
         },
-        ticketOptionTitle (option_id){
+        ticketOptionTitle(option_id) {
             option_id = parseInt(option_id);
-            switch (option_id){
+            switch (option_id) {
                 case 1:
                     return 'Regular';
                 case 2:
@@ -310,12 +317,12 @@ var vm = new Vue({
             }
         },
         getTotal() {
-          var tickets = this.cartItems;
-          var total = 0;
-          for (var i = 0; i < tickets.length; i++) {
-            total+=this.getEventTotal(tickets[i]);
-          }
-          return total;
+            var tickets = this.cartItems;
+            var total = 0;
+            for (var i = 0; i < tickets.length; i++) {
+                total += this.getEventTotal(tickets[i]);
+            }
+            return total;
         }
     },
     mounted: function () {
@@ -327,10 +334,10 @@ var vm = new Vue({
         if (cart === null) {
             cart = {
                 tickets: [],
-                
+
             }
         }
-       
+
         store.commit('RESTORE_CART', cart)
     },
     computed: {
