@@ -35,9 +35,12 @@ var store = new Vuex.Store({
         UPDATE_EVENT_LIST(state, events) {
             state.events = events;
         },
+<<<<<<< HEAD
          UPDATE_MERCHANDISE_LIST(state, merchandises){
             state.merchandises = merchandises;
         },
+=======
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
         RESTORE_CART(state, cart) {
             state.cart = cart
             window.localStorage.setItem('cart', JSON.stringify(state.cart))
@@ -45,6 +48,8 @@ var store = new Vuex.Store({
         CLEAR_CART(state) {
             state.cart = {
                 tickets: []
+                tickets: [],
+                merchandises: []
 
             }
             window.localStorage.setItem('cart', JSON.stringify(state.cart))

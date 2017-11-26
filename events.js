@@ -182,6 +182,7 @@ var vm = new Vue({
 
         },
 
+
         // getMerchandises: function () {
         //     var self = this;
         // axios.post('https://ticketpay.wizhub.co.ke/ticket-pay-api/public/api/frontend/events')
@@ -200,6 +201,7 @@ var vm = new Vue({
         //         })
 
         // },
+
 
         buyTicket: function (event) {
             store.commit('ADD_TICKET_TO_CART', event)
@@ -251,7 +253,10 @@ var vm = new Vue({
                     }
                 }
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
             return 'No tickets.'
         },
         addTicketsCart: function (event) {
@@ -367,9 +372,11 @@ var vm = new Vue({
         cartItems() {
             return store.state.cart.tickets
         },
+
        merchandises() {
             return store.state.merchandises
         },
+
         cartCount() {
             return store.state.cart.length
         },

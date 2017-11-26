@@ -142,7 +142,10 @@
 	box-shadow: inherit;
 	outline: 0 none;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 #contact #btn-send-contact {
 	font-size: 14px;
 	line-height: 18px;
@@ -265,23 +268,40 @@
 .error_pagenotfound em {
 	display: block;
 	font-size: 18px;
+<<<<<<< HEAD
 	color: #FF5722;
+=======
+	color: #ff3366;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 	margin: 15px 0;
 	font-style: normal;
 }
 a.button-back {
+<<<<<<< HEAD
 	border: 2px #FF5722 solid;
+=======
+	border: 2px #ff3366 solid;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 	border-radius: 50px;
 	text-transform: uppercase;
 	font-size: 14px;
 	padding: 8px 25px;
 	margin-top: 15px;
+<<<<<<< HEAD
 	background: #FF5722;
 	color: #fff;
 }
 a.button-back:hover {
 	border: 2px #FF5722 solid;
 	background: #FF5722;
+=======
+	background: #ff3366;
+	color: #fff;
+}
+a.button-back:hover {
+	border: 2px #ff3366 solid;
+	background: #ff3366;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 }
 #animate-arrow {
 	position: relative;
@@ -355,14 +375,22 @@ a.button-back:hover {
 	font-size: 15px;
 }
 .about-page ul li a:hover {
+<<<<<<< HEAD
 	color: #FF5722;
+=======
+	color: #ff3366;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 	padding-left: 10px;
 }
 .about-page .fa-arrow-right {
 	font-size: 12px;
 }
 .about-page .text_color {
+<<<<<<< HEAD
 	color: #FF5722;
+=======
+	color: #ff3366;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 }
 @media only screen and (min-width: 300px) and (max-width: 767px) {
 .about-slid-info {
@@ -411,12 +439,17 @@ a.button-back:hover {
 	padding-left: 0;
 }
 .align-center-btn a.button {
+<<<<<<< HEAD
 	border: 2px #FF5722 solid;
+=======
+	border: 2px #ff3366 solid;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 	padding: 8px 25px;
 	border-radius: 50px;
 	font-weight: bold;
 	font-size: 15px;
 	margin-right: 15px;
+<<<<<<< HEAD
 	background: #FF5722;
 	color: #fff;
 }
@@ -424,6 +457,15 @@ a.button-back:hover {
 	background: #FF5722;
 	color: #fff;
 	border: 2px #FF5722 solid;
+=======
+	background: #ff3366;
+	color: #fff;
+}
+.align-center-btn a.button.buy-temp {
+	background: #ff3366;
+	color: #fff;
+	border: 2px #ff3366 solid;
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
 }
 .align-center-btn {
 	margin-top: 25px;
@@ -554,6 +596,7 @@ a.button-back:hover {
 }
 .faq-page .box-icon-effect-1 .box-icon i {
 	background: #FF5722;
+	background: #ff3366;
 	color: #fff;
 	-webkit-transition: background 0.2s, color 0.2s;
 	-moz-transition: background 0.2s, color 0.2s;
@@ -603,6 +646,7 @@ a.button-back:hover {
 	display: block;
 	position: relative;
 	background: #FF5722;
+	background: #ff3366;
 	color: #fff;
 	padding: 14px 50px 12px 15px;
 	border-radius: 0;
@@ -768,6 +812,8 @@ button.button.sign-in {
 	float: left;
 	background: #FF5722;
 	border: 2px solid #FF5722;
+	background: #ff3366;
+	border: 2px solid #ff3366;
 	color: #fff;
 	padding: 13px 25px 13px 20px;
 }

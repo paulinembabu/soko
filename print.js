@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * Created by p on 7/5/17.
+=======
+ * Created by cate on 7/5/17.
+>>>>>>> abf5024b2d4d138210b2261304d2fecb2dd85ae4
  */
 
 var vm = new Vue({
@@ -21,6 +25,7 @@ var vm = new Vue({
         //axios.get('http://localhost:8086/api/frontend/sales/'+no)
         //axios.get('https://ticketsoko.co.ke/ticket-pay-api/public/api/frontend/sales/'+no)
         axios.get('http://ticketpay.wizhub.co.ke/ticket-pay-api/public/api/frontend/sales/'+no)
+        axios.get('https://ticketsoko.co.ke/ticket-pay-api/public/api/frontend/sales/'+no)
            .then(function (response) {
                 if(response.data.data !=null){
                self.generateTicket(response.data.data);
